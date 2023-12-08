@@ -1,80 +1,48 @@
 import path from "path";
-import { createHash } from "crypto";
-import { createReadStream } from "fs";
-
-interface ManifestEntry {
-  integrity?: string;
-  revision: string | null;
-  url: string;
-}
-
-type ManifestEntryWithSize = ManifestEntry & {
-  size: number;
-};
-
-type ManifestEntries = Array<ManifestEntryWithSize>;
-
-type ManifestTransform = (
-  manifestEntries: Array<ManifestEntryWithSize>,
-  compilation?: unknown
-) => Promise<ManifestTransformResult> | ManifestTransformResult;
-
-interface ManifestTransformResult {
-  manifest: Array<ManifestEntryWithSize>;
-  warnings?: Array<string>;
-}
+import { calculateSRI } from "./calculate-SRI.js";
+import type {
+  ManifestEntries,
+  ManifestEntryWithSize,
+  ManifestTransform,
+  ManifestTransformResult,
+} from "./types.js";
 
 export interface AddIntegrityOptions {
   folder?: string;
+  hash?: "sha256" | "sha384" | "sha512";
 }
 
-async function addIntegrityRaw(
-  manifestEntries: ManifestEntries,
-  options?: AddIntegrityOptions
-): Promise<ManifestTransformResult> {
-  const folder = options?.folder ?? "dist";
-
-  const newManifestEntries = await Promise.all(
-    manifestEntries.map((entry) => handleEntry(entry, folder))
-  );
-
-  return { manifest: newManifestEntries };
-}
+export const DEFAULT_OPTIONS = {
+  folder: "dist",
+  hash: "sha256",
+} as const;
 
 async function handleEntry(
-  entry: ManifestEntry & {
-    size: number;
-  },
-  folder: string
+  entry: ManifestEntryWithSize,
+  options?: AddIntegrityOptions
 ) {
+  const folder = options?.folder ?? DEFAULT_OPTIONS.folder;
+  const hash = options?.hash ?? DEFAULT_OPTIONS.hash;
+
   const filepath = path.join(folder, entry.url);
-  const integrity = await calculateSRI(filepath);
+  const integrity = await calculateSRI(filepath, hash);
   return {
     ...entry,
     integrity,
   };
 }
 
-async function calculateSRI(filePath: string): Promise<string> {
-  const hash = createHash("sha256");
-  const fileStream = createReadStream(filePath);
+async function addIntegrityRaw(
+  manifestEntries: ManifestEntries,
+  options?: AddIntegrityOptions
+): Promise<ManifestTransformResult> {
+  const newManifestEntries = await Promise.all(
+    manifestEntries.map((entry) => handleEntry(entry, options))
+  );
 
-  return new Promise<string>((resolve, reject) => {
-    fileStream.on("data", (data) => {
-      hash.update(data);
-    });
-
-    fileStream.on("end", () => {
-      const fileHash = hash.digest("base64");
-      const sriString = `sha256-${fileHash}`;
-      resolve(sriString);
-    });
-
-    fileStream.on("error", (error) => {
-      reject(error);
-    });
-  });
+  return { manifest: newManifestEntries };
 }
+
 
 export default function addIntegrity(
   options?: AddIntegrityOptions
