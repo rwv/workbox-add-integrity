@@ -24,10 +24,16 @@ interface ManifestTransformResult {
   warnings?: Array<string>;
 }
 
+export interface AddIntegrityOptions {
+  folder?: string;
+}
+
 async function addIntegrityRaw(
   manifestEntries: ManifestEntries,
-  folder: string
+  options?: AddIntegrityOptions
 ): Promise<ManifestTransformResult> {
+  const folder = options?.folder ?? "dist";
+
   const newManifestEntries = await Promise.all(
     manifestEntries.map((entry) => handleEntry(entry, folder))
   );
@@ -70,7 +76,9 @@ async function calculateSRI(filePath: string): Promise<string> {
   });
 }
 
-export default function addIntegrity(folder = "dist"): ManifestTransform {
+export default function addIntegrity(
+  options?: AddIntegrityOptions
+): ManifestTransform {
   return (manifestEntries: ManifestEntries) =>
-    addIntegrityRaw(manifestEntries, folder);
+    addIntegrityRaw(manifestEntries, options);
 }

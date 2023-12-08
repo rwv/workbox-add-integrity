@@ -15,8 +15,12 @@ npm install workbox-add-integrity
 import addIntegrity from "workbox-add-integrity";
 import { injectManifest } from "workbox-build";
 
+const addIntegrityOptions = {
+  folder: "dist",
+}
+
 injectManifest({
-  manifestTransforms: [addIntegrity("dist")],
+  manifestTransforms: [addIntegrity(addIntegrityOptions)],
 });
 ```
 
