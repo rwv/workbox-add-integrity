@@ -1,6 +1,6 @@
 {
   "name": "workbox-add-integrity",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A workbox plugin that add integrity to workbox precache manifest.",
   "main": "lib/index.js",
   "module": "lib/index.js",
