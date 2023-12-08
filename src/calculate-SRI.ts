@@ -15,7 +15,7 @@ export async function calculateSRI(
 
     fileStream.on("end", () => {
       const fileHash = hash.digest("base64");
-      const sriString = `sha256-${fileHash}`;
+      const sriString = `${algorithm}-${fileHash}`;
       resolve(sriString);
     });
 
