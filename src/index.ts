@@ -32,8 +32,6 @@ async function addIntegrityRaw(
     manifestEntries.map((entry) => handleEntry(entry, folder))
   );
 
-  console.log(newManifestEntries);
-
   return { manifest: newManifestEntries };
 }
 
@@ -44,7 +42,6 @@ async function handleEntry(
   folder: string
 ) {
   const filepath = path.join(folder, entry.url);
-  console.log(filepath);
   const integrity = await calculateSRI(filepath);
   return {
     ...entry,
