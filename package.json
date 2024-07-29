@@ -23,5 +23,13 @@
     "@types/node": "^22.0.0",
     "typescript": "^5.3.2",
     "vitest": "^2.0.4"
-  }
+  },
+  "repository": "github:rwv/workbox-add-integrity",
+  "homepage": "https://github.com/rwv/workbox-add-integrity#readme",
+  "bugs": {
+    "url": "https://github.com/rwv/workbox-add-integrity/issues"
+  },
+  "files": [
+    "lib"
+  ]
 }
