@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.2](https://github.com/rwv/workbox-add-integrity/compare/v2.2.1...v2.2.2) (2024-07-29)
+
+
+### Bug Fixes
+
+* move test files to tests folder to avoid pollute lib folder ([8a665d7](https://github.com/rwv/workbox-add-integrity/commit/8a665d7de8917c382797adb1011bc9452611d0df))
+
 ## [2.2.1](https://github.com/rwv/workbox-add-integrity/compare/v2.2.0...v2.2.1) (2024-07-29)
 
 
