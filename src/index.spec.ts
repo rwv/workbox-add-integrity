@@ -4,11 +4,11 @@ import { expect, test, describe } from "vitest";
 describe("workbox-add-integrity", () => {
   test("should transform manifest successfully using sha256", async () => {
     const expectedIntegrity =
-      "sha256-ThNHoR/aW0V8+EweTXxjqmRN1D4D+xUNGrpBO+uG21M=";
-    const hashFunction = addIntegrity({ hash: "sha256", folder: "" });
+      "sha256-8pvGSp03MrS5A1El/bMoX1tkVXeO3KckFGceDKOy4N4=";
+    const hashFunction = addIntegrity({ hash: "sha256", folder: "tests" });
     const manifest = [
       {
-        url: "LICENSE",
+        url: "example.txt",
         revision: null,
         size: 0,
       },
