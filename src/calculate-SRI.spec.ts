@@ -3,22 +3,22 @@ import { calculateSRI } from "./calculate-SRI.js";
 
 describe("calculate SRI", () => {
   test("should calculate the SRI for a file using sha256", async () => {
-    const expectedHash = "ThNHoR/aW0V8+EweTXxjqmRN1D4D+xUNGrpBO+uG21M=";
-    const sri = await calculateSRI("./LICENSE", "sha256");
+    const expectedHash = "8pvGSp03MrS5A1El/bMoX1tkVXeO3KckFGceDKOy4N4=";
+    const sri = await calculateSRI("./tests/example.txt", "sha256");
     expect(sri).toBe(`sha256-${expectedHash}`);
   });
 
   test("should calculate the SRI for a file using sha384", async () => {
     const expectedHash =
-      "+hvp6h9+NLZ6Q6vG8464M77MRZiCTYdpTkLa9n3Gvz4ZpV/mn7sT7Zz4L3KiIrIh";
-    const sri = await calculateSRI("./LICENSE", "sha384");
+      "rl3ZV1kKuG/XNZ9D7LaLhzTVASccotOVO3IJ7WOpjfuGz2bixYSMwkcavdgFeGcK";
+    const sri = await calculateSRI("./tests/example.txt", "sha384");
     expect(sri).toBe(`sha384-${expectedHash}`);
   });
 
   test("should calculate the SRI for a file using sha512", async () => {
     const expectedHash =
-      "g5TXBvsKlG8gUmz/IhCP/BfJWy4vjv65opx1aFciunLGOZX4swbaFkPjPibpkVAlVL2Hus3vsYKv0BMHUCjfzA==";
-    const sri = await calculateSRI("./LICENSE", "sha512");
+      "sd8ha1sF45ZcRpSSdEpd4MlF4LEDxC6x5XR2++2PHUifXK6beS2zfF2CO8DGx9BrBWF21qvlzgdu6trtQU4Xow==";
+    const sri = await calculateSRI("./tests/example.txt", "sha512");
     expect(sri).toBe(`sha512-${expectedHash}`);
   });
 });
