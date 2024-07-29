@@ -1,4 +1,4 @@
-import addIntegrity from "./index.js";
+import addIntegrity from "../src/index.js";
 import { expect, test, describe } from "vitest";
 
 describe("workbox-add-integrity", () => {

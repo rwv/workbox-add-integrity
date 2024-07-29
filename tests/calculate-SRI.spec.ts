@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest";
-import { calculateSRI } from "./calculate-SRI.js";
+import { calculateSRI } from "../src/calculate-SRI.js";
 
 describe("calculate SRI", () => {
   test("should calculate the SRI for a file using sha256", async () => {
