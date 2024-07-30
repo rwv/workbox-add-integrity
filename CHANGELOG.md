@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.3](https://github.com/rwv/workbox-add-integrity/compare/v2.2.2...v2.2.3) (2024-07-30)
+
+
+### Bug Fixes
+
+* include `src` in npm package to enable source map ([#21](https://github.com/rwv/workbox-add-integrity/issues/21)) ([4c56278](https://github.com/rwv/workbox-add-integrity/commit/4c562784b5be4d6065b6f5ca0b3e59e19a16bf75))
+
 ## [2.2.2](https://github.com/rwv/workbox-add-integrity/compare/v2.2.1...v2.2.2) (2024-07-29)
 
 
