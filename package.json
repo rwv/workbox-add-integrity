@@ -30,6 +30,7 @@
     "url": "https://github.com/rwv/workbox-add-integrity/issues"
   },
   "files": [
-    "lib"
+    "lib",
+    "src"
   ]
 }
