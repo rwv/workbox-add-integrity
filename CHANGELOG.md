@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.4](https://github.com/rwv/workbox-add-integrity/compare/v2.2.3...v2.2.4) (2024-08-01)
+
+
+### Miscellaneous Chores
+
+* add provenance statements in package ([70e8b39](https://github.com/rwv/workbox-add-integrity/commit/70e8b3989578ed7fd5811d76f88d6eca37cc938e))
+
 ## [2.2.3](https://github.com/rwv/workbox-add-integrity/compare/v2.2.2...v2.2.3) (2024-07-30)
 
 
