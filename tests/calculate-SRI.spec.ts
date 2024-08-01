@@ -21,4 +21,10 @@ describe("calculate SRI", () => {
     const sri = await calculateSRI("./tests/example.txt", "sha512");
     expect(sri).toBe(`sha512-${expectedHash}`);
   });
+
+  test("should throw an error if the file does not exist", async () => {
+    await expect(
+      calculateSRI("./tests/does-not-exist.txt", "sha256")
+    ).rejects.toThrow();
+  });
 });
