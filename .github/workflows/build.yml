@@ -14,6 +14,12 @@ jobs:
         node-version: [latest, 18, 20, 22]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
+    permissions:
+      # Required to checkout the code
+      contents: read
+      # Required to put a comment into the pull-request
+      pull-requests: write
+
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -35,6 +41,10 @@ jobs:
 
       - name: Run tests
         run: pnpm run coverage
+
+      - name: Report Coverage
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == 'latest' && github.event_name == 'pull_request'
+        uses: davelosert/vitest-coverage-report-action@v2
 
       - name: Build
         run: pnpm run build
