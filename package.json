@@ -13,8 +13,10 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint --fix src/**/*.ts",
+    "lint-check": "eslint src/**/*.ts --no-fix",
     "prepare": "husky",
-    "format": "prettier --write src/**/*.ts"
+    "format": "prettier --write src/**/*.ts",
+    "format-check": "prettier --check src/**/*.ts"
   },
   "keywords": [
     "workbox",
