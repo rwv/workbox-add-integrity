@@ -19,7 +19,7 @@ export const DEFAULT_OPTIONS = {
 
 async function handleEntry(
   entry: ManifestEntryWithSize,
-  options?: AddIntegrityOptions
+  options?: AddIntegrityOptions,
 ) {
   const folder = options?.folder ?? DEFAULT_OPTIONS.folder;
   const hash = options?.hash ?? DEFAULT_OPTIONS.hash;
@@ -34,18 +34,17 @@ async function handleEntry(
 
 async function addIntegrityRaw(
   manifestEntries: ManifestEntries,
-  options?: AddIntegrityOptions
+  options?: AddIntegrityOptions,
 ): Promise<ManifestTransformResult> {
   const newManifestEntries = await Promise.all(
-    manifestEntries.map((entry) => handleEntry(entry, options))
+    manifestEntries.map((entry) => handleEntry(entry, options)),
   );
 
   return { manifest: newManifestEntries };
 }
 
-
 export default function addIntegrity(
-  options?: AddIntegrityOptions
+  options?: AddIntegrityOptions,
 ): ManifestTransform {
   return (manifestEntries: ManifestEntries) =>
     addIntegrityRaw(manifestEntries, options);

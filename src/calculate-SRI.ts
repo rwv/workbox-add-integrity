@@ -3,7 +3,7 @@ import { createReadStream } from "fs";
 
 export async function calculateSRI(
   filePath: string,
-  algorithm: "sha256" | "sha384" | "sha512"
+  algorithm: "sha256" | "sha384" | "sha512",
 ): Promise<string> {
   const hash = createHash(algorithm);
   const fileStream = createReadStream(filePath);

@@ -12,7 +12,7 @@ export type ManifestEntries = Array<ManifestEntryWithSize>;
 
 export type ManifestTransform = (
   manifestEntries: Array<ManifestEntryWithSize>,
-  compilation?: unknown
+  compilation?: unknown,
 ) => Promise<ManifestTransformResult> | ManifestTransformResult;
 
 export interface ManifestTransformResult {
