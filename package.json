@@ -11,6 +11,7 @@
     "prepublishOnly": "npm run build",
     "build": "tsc",
     "test": "vitest",
+    "test:junit": "vitest run --reporter junit --outputFile=./junit.xml",
     "coverage": "vitest run --coverage",
     "lint": "eslint --fix src/**/*.ts",
     "lint-check": "eslint src/**/*.ts --no-fix",
