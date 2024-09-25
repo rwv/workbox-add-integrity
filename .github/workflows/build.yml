@@ -45,13 +45,22 @@ jobs:
       - name: Format check
         run: pnpm run format-check
 
+      - name: Run junit tests
+        run: pnpm run test:junit
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Run tests
         run: pnpm run coverage
 
       - name: Report Coverage
         if: matrix.os == 'ubuntu-latest' && matrix.node-version == 'latest' && github.event_name == 'pull_request'
         uses: davelosert/vitest-coverage-report-action@v2
-  
+
       - name: Upload results to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.node-version == 'latest'
         uses: codecov/codecov-action@v4
